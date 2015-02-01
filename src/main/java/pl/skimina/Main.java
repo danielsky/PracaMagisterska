@@ -31,7 +31,8 @@ public class Main {
 	
 	
 	@RequestMapping(value={"/", "/index.do"})
-	public String index(){
+	public String index(ModelMap map){
+		map.put("material_wew", MaterialPlyn.values());
 		return "index";
 	}
 	

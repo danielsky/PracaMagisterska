@@ -4,6 +4,14 @@ import javax.servlet.http.HttpServletRequest;
 
 public class ParametrySymulacji {
 	
+	public static String PLYN_WEW = "plyn_wewn";
+	public static String PLYN_ZEW = "plyn_zewn";
+	public static String MAT_WEW = "material_wewn";
+	public static String MAT_ZEW = "material_zewn";
+	
+	
+	
+	
 	public static String RO_T = "ro_t";
 	public static String C_T = "c_t";
 	public static String TEMP_T = "t_t";

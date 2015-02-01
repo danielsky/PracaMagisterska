@@ -1,6 +1,6 @@
 <%@page import="pl.skimina.ParametrySymulacji"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 	<head>
 	<meta charset="UTF-8">
@@ -8,6 +8,22 @@
 	<script src="js/jquery-1.11.2.min.js"></script>
 	<script>
 		$(document).ready(function(){
+			$("#plynWewn").change(function(){
+				if( $("#plynWewn").val() == 0){
+					$("#ro_t").show();
+					$("#c_t").show();
+				}else{
+					$("#ro_t").hide();
+					$("#c_t").hide();
+				} 
+				
+			});
+			
+
+
+			$("#ro_t").hide();
+			$("#c_t").hide();
+
 
 		}); 
 	</script>
@@ -28,10 +44,21 @@
 					<td><input type="text" name="<%=ParametrySymulacji.TEMP_T%>" value="0"/></td>
 				</tr>
 				<tr class="row">
+					<td>Rodzaj płynu</td>
+					<td>
+					<select id="plynWewn" name="<%=ParametrySymulacji.PLYN_WEW%>" >
+						<c:forEach var="material" items="${material_wew}">
+							<option value="${material.code}">${material.name}</option>
+						</c:forEach>
+						
+					</select>
+					</td>
+				</tr>
+				<tr id="ro_t" class="row">
 					<td>Gęstość</td>
 					<td><input type="text" name="<%=ParametrySymulacji.RO_T%>" value="0"/></td>
 				</tr>
-				<tr class="row">
+				<tr id="c_t" class="row">
 					<td>Ciepło Właściwe</td>
 					<td><input type="text" name="<%=ParametrySymulacji.C_T%>" value="0"/></td>
 				</tr>
