@@ -32,7 +32,10 @@ public class Main {
 	
 	@RequestMapping(value={"/", "/index.do"})
 	public String index(ModelMap map){
-		map.put("material_wew", MaterialPlyn.values());
+		map.put("plyn_wew", MaterialPlyn.values());
+		map.put("rura_wew", MaterialRura.values());
+		map.put("plyn_zew", MaterialPlyn.values());
+		map.put("rura_zew", MaterialRura.values());
 		return "index";
 	}
 	
@@ -48,6 +51,9 @@ public class Main {
 		}catch(NumberFormatException nex){
 			log.info("Nieprawidlowa ilosc sekcji", nex);
 			throw new Exception("Ilość sekcji nie jest liczbą całkowitą");
+		}catch(Exception ex){
+			log.info("Błąd ogólny", ex);
+			throw new Exception(ex.getMessage());
 		}
 		
 		String errorMsg = ps.validate();

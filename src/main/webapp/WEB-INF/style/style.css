@@ -20,6 +20,10 @@ html,body{
 	margin-top: 40px;
 	border: 1px solid white;
 }
+
+#params tr td input,select{
+	width: 150px;
+}
 .row{
 	background-color: white;
 }
@@ -58,4 +62,9 @@ html,body{
 
 .hidden{
 	display: none;
+}
+
+.unit{
+	width: 120px;
+	text-align: right;
 }

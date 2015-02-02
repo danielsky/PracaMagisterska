@@ -1,9 +1,9 @@
 package pl.skimina;
 
-public enum MaterialPlyn {
+public enum MaterialRura {
 	
-	WODA(1, "Woda", 1000, 4187),
-	OLEJ(2, "Olej", 920, 1885),
+	STAL(1, "Stal", 1000, 4187),
+	ALUMINIUM(2, "Aluminium", 920, 1885),
 	INNY(0, "Inny...", 0, 0);
 	
 	private double ro;
@@ -11,7 +11,7 @@ public enum MaterialPlyn {
 	private String name;
 	private int code;
 	
-	private MaterialPlyn(int code, String name, double ro, double c) {
+	private MaterialRura(int code, String name, double ro, double c) {
 		this.code = code;
 		this.name = name;
 		this.ro = ro;
@@ -34,12 +34,12 @@ public enum MaterialPlyn {
 		return ro;
 	}
 	
-	public static MaterialPlyn getByID(int id) throws Exception{
-		for(MaterialPlyn mat : values()){
+	public static MaterialRura getByID(int id){
+		for(MaterialRura mat : values()){
 			if(mat.code == id) return mat;
 		}
-		throw new Exception("No such material exception!");
 		
+		return null;
 	}
 
 }

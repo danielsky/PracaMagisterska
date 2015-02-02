@@ -40,22 +40,62 @@ public class ParametrySymulacji {
 	public static String ILOSC_SEKCJI = "ilosc_sekcji";
 	
 	
-	public ParametrySymulacji(HttpServletRequest req) throws NumberFormatException{
-		ro_t = Double.parseDouble(req.getParameter(RO_T));
-		c_t = Double.parseDouble(req.getParameter(C_T));
+	public ParametrySymulacji(HttpServletRequest req) throws NumberFormatException, Exception{
+		
+		
 		t_t = Double.parseDouble(req.getParameter(TEMP_T));
+		int id = Integer.parseInt(req.getParameter(PLYN_WEW));
+		if(id == 0){
+			ro_t = Double.parseDouble(req.getParameter(RO_T));
+			c_t = Double.parseDouble(req.getParameter(C_T));
+		}else{
+			MaterialPlyn plyn = MaterialPlyn.getByID(id);
+			ro_t = plyn.getRo();
+			c_t = plyn.getC();
+		}
 		
-		ro_s = Double.parseDouble(req.getParameter(RO_S));
-		c_s = Double.parseDouble(req.getParameter(C_S));
-		t_s = Double.parseDouble(req.getParameter(TEMP_S));
 		
-		ro_p = Double.parseDouble(req.getParameter(RO_P));
-		c_p = Double.parseDouble(req.getParameter(C_P));
+		
 		t_p = Double.parseDouble(req.getParameter(TEMP_P));
+		id = Integer.parseInt(req.getParameter(MAT_WEW));
+		if(id == 0){
+			ro_p = Double.parseDouble(req.getParameter(RO_P));
+			c_p = Double.parseDouble(req.getParameter(C_P));
+		}else{
+			MaterialRura rura = MaterialRura.getByID(id);
+			ro_p = rura.getRo();
+			c_p = rura.getC();
+			
+		}
 		
-		ro_z = Double.parseDouble(req.getParameter(RO_Z));
-		c_z = Double.parseDouble(req.getParameter(C_Z));
+		
+		
+		
+		
+		
+		t_s = Double.parseDouble(req.getParameter(TEMP_S));
+		id = Integer.parseInt(req.getParameter(PLYN_ZEW));
+		if(id == 0){
+			ro_s = Double.parseDouble(req.getParameter(RO_S));
+			c_s = Double.parseDouble(req.getParameter(C_S));
+		}else{
+			MaterialPlyn plyn = MaterialPlyn.getByID(id);
+			ro_s = plyn.getRo();
+			c_s = plyn.getC();
+		}
+		
+		
 		t_z = Double.parseDouble(req.getParameter(TEMP_Z));
+		id = Integer.parseInt(req.getParameter(MAT_ZEW));
+		if(id == 0){
+			ro_z = Double.parseDouble(req.getParameter(RO_Z));
+			c_z = Double.parseDouble(req.getParameter(C_Z));
+		}else{
+			MaterialRura rura = MaterialRura.getByID(id);
+			ro_z = rura.getRo();
+			c_z = rura.getC();
+		}
+		
 		
 		d1 = Double.parseDouble(req.getParameter(D1));
 		d2 = Double.parseDouble(req.getParameter(D2));
