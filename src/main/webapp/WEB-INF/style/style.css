@@ -1,9 +1,14 @@
 html,body{
 	width: 100%;
+	height: 100%;
 	background-color: #111;
+}
+body{
+	margin: 0px;
 }
 
 #titlediv{
+	padding-top: 20px;
 	text-align: center;
 	color: white;
 }

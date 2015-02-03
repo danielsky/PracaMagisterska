@@ -1,5 +1,8 @@
 package pl.skimina;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 public class ParametrySymulacji {
@@ -182,6 +185,11 @@ public class ParametrySymulacji {
 	public int ilosc_sekcji;
 	public double dlugosc_sekcji;
 	
+	//Wyliczone z parametrow
+	public double alfa_t;
+	public double alfa_s;
+	public double alfa_3;
+	
 	
 	public void configure(){
 		
@@ -194,11 +202,46 @@ public class ParametrySymulacji {
 		alfa_3 = 30;
 	}
 	
+	public Map<String, String> getValues(){
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("ro_t", Double.toString(ro_t));
+		map.put("c_t", Double.toString(c_t));
+		map.put("t_t", Double.toString(t_t));
+		
+		map.put("ro_p", Double.toString(ro_p));
+		map.put("c_p", Double.toString(c_p));
+		map.put("t_p", Double.toString(t_p));
+		
+		map.put("ro_s", Double.toString(ro_s));
+		map.put("c_s", Double.toString(c_s));
+		map.put("t_s", Double.toString(t_s));
+		
+		map.put("ro_z", Double.toString(ro_z));
+		map.put("c_z", Double.toString(c_z));
+		map.put("t_z", Double.toString(t_z));
+		
+		map.put("d1", Double.toString(d1));
+		map.put("d2", Double.toString(d2));
+		map.put("d3", Double.toString(d3));
+		map.put("d4", Double.toString(d4));
+		
+		map.put("v_t", Double.toString(v_t));
+		map.put("v_s", Double.toString(v_s));
+		
+		map.put("dlugosc_wymiennika", Double.toString(dlugosc_wymiennika));
+		map.put("dlugosc_sekcji", Double.toString(dlugosc_sekcji));
+		map.put("ilosc_sekcji", Integer.toString(ilosc_sekcji));
+		map.put("alfa_t", Double.toString(alfa_t));
+		map.put("alfa_s", Double.toString(alfa_s));
+		map.put("alfa_3", Double.toString(alfa_3));
+		
+		
+		return map;
+	}
 	
 	
-	//Wyliczone z parametrow
-	public double alfa_t;
-	public double alfa_s;
-	public double alfa_3;
+	
+	
 	
 }

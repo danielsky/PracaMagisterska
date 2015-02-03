@@ -39,6 +39,32 @@ public class Main {
 		return "index";
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/calculationsTest.do")
+	public String calcTest(ModelMap map, HttpServletRequest request) throws Exception{
+		ParametrySymulacji ps = null;
+		
+		try{
+			
+			ps = new ParametrySymulacji(request);
+			
+		}catch(NumberFormatException nex){
+			log.info("Nieprawidlowa ilosc sekcji", nex);
+			throw new Exception("Ilość sekcji nie jest liczbą całkowitą");
+		}catch(Exception ex){
+			log.info("Błąd ogólny", ex);
+			throw new Exception(ex.getMessage());
+		}
+		
+		String errorMsg = ps.validate();
+		if(errorMsg != null) throw new Exception(errorMsg);
+		
+		ps.configure();
+		
+		map.put("values", ps.getValues());
+		
+		return "calcTest";
+	}
+	
 	@RequestMapping(method=RequestMethod.POST, value="/calculations.do")
 	public String calc(ModelMap map, HttpServletRequest request) throws Exception{
 		

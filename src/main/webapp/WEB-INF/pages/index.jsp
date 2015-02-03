@@ -81,16 +81,11 @@
 	<head>
 	<body>
 	<div>	
-		<div id="helpImg" style="position: absolute; z-index: -1; height: 100%;width: 100%;background: rgba(50,50,50,0.8);">
-			<div>
-				<img src="/app/img/rysunek.png" style="margin: 200px auto; margin-bottom: 20px; border: 3px solid white;display: inherit;">
-				<input id="closeHelp" type="button" value="Zamknij" style="margin: 0px auto;display: inherit;">
-			</div>
-		</div>
+		
 		<div id="titlediv">
 			<span>Symulator wymiennika ciepła typu rura w rurze</span>
 		</div>
-		<form method="post" action="calculations.do" target="_blank">
+		<form method="post" action="calculationsTest.do" target="_blank">
 			<table id="params">
 			
 				<tr id="head1">
@@ -274,6 +269,12 @@
 			</table>
 		</form>
 
+	</div>
+	<div id="helpImg" style="position: absolute; z-index: -1; height: 100%;width: 100%; top: 0px; left: 0px; background: rgba(50,50,50,0.8);">
+		<div>
+			<img src="/app/img/rysunek.png" style="margin: 200px auto; margin-bottom: 20px; border: 3px solid white;display: inherit;">
+			<input id="closeHelp" type="button" value="Zamknij" style="margin: 0px auto;display: inherit;">
+		</div>
 	</div>
 	</body>
 </html>
