@@ -85,7 +85,7 @@
 		<div id="titlediv">
 			<span>Symulator wymiennika ciepła typu rura w rurze</span>
 		</div>
-		<form method="post" action="calculationsTest.do" target="_blank">
+		<form method="post" action="calculations.do" target="_blank">
 			<table id="params">
 			
 				<tr id="head1">

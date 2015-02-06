@@ -3,7 +3,6 @@ package pl.skimina;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.ObjectInputStream.GetField;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -14,34 +13,34 @@ public class Test {
 		ParametrySymulacji ps = new ParametrySymulacji();
 		
 		//plyn wewn
-		ps.c_t = 10;
-		ps.t_t = 200;
-		ps.ro_t = 10;
-		
-		//plyn zew
-		ps.c_s = 10;
-		ps.t_s = 250;
-		ps.ro_s = 10;
+		ps.c_t = 4187;
+		ps.t_t = 300;
+		ps.ro_t = 1000;
 		
 		//rura wewn
-		ps.c_p = 10;
-		ps.t_p = 220;
-		ps.ro_p = 10;
+		ps.c_p = 500;
+		ps.t_p = 320;
+		ps.ro_p = 7500;
+		
+		//plyn zew
+		ps.c_s = 4187;
+		ps.t_s = 340;
+		ps.ro_s = 1000;
 		
 		//rura zewn
-		ps.c_z = 10;
-		ps.t_z = 240;
-		ps.ro_z = 10;
+		ps.c_z = 500;
+		ps.t_z = 330;
+		ps.ro_z = 7500;
 		
 		ps.d1 = 0.1;
-		ps.d2 = 0.15;
-		ps.d3 = 0.25;
-		ps.d4 = 0.3;
+		ps.d2 = 0.11;
+		ps.d3 = 0.20;
+		ps.d4 = 0.21;
 		
-		ps.v_s = 10;
-		ps.v_t = 10;
+		ps.v_s = 0.2;
+		ps.v_t = 0.3;
 		
-		ps.dlugosc_wymiennika = 10;
+		ps.dlugosc_wymiennika = 0.7;
 		ps.ilosc_sekcji = 10;
 		
 		ps.configure();
@@ -67,34 +66,54 @@ public class Test {
 		}
 		
 		double dt = minmax.getMax()-minmax.getMin();
-		System.out.println(dt);
+		System.out.println("MIN: "+minmax.getMin());
+		System.out.println("MAX: "+minmax.getMax());
+		System.out.println("DT: "+dt);
 		
 		int pos=10,offset=38;
 		for(Sekcja s : w.getSekcje()){
+			
+			System.out.println("POS: "+pos);
 			double val = (s.T_z-minmax.getMin())/dt;
-			System.out.println(val);
+			//System.out.println(val);
 			g.setColor(getColor(val));
 			g.fillRect(pos, 10, offset, 20);
 			
 			
 			val = (s.T_p-minmax.getMin())/dt;
-			System.out.println(val);
+			//System.out.println(val);
 			g.setColor(getColor(val));
 			g.fillRect(pos, 30, offset, 20);
 			
 			val = (s.T_s-minmax.getMin())/dt;
-			System.out.println(val);
+			//System.out.println(val);
 			g.setColor(getColor(val));
 			g.fillRect(pos, 50, offset, 20);
 			
 			val = (s.T_t-minmax.getMin())/dt;
-			System.out.println(val);
+			//System.out.println(val);
 			g.setColor(getColor(val));
 			g.fillRect(pos, 70, offset, 20);
 			
 			pos += offset;
 			
-			
+		}
+		
+		System.out.println("T: ");
+		for(Sekcja s : w.getSekcje()){
+			System.out.println(s.T_t);
+		}
+		System.out.println("P: ");
+		for(Sekcja s : w.getSekcje()){
+			System.out.println(s.T_p);
+		}
+		System.out.println("S: ");
+		for(Sekcja s : w.getSekcje()){
+			System.out.println(s.T_s);
+		}
+		System.out.println("Z: ");
+		for(Sekcja s : w.getSekcje()){
+			System.out.println(s.T_z);
 		}
 		
 		g.setColor(Color.BLACK);

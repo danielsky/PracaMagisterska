@@ -2,8 +2,8 @@ package pl.skimina;
 
 public enum MaterialRura {
 	
-	STAL(1, "Stal", 1000, 4187),
-	ALUMINIUM(2, "Aluminium", 920, 1885),
+	STAL(1, "Stal", 7500, 500),
+	ALUMINIUM(2, "Aluminium", 2720, 900),
 	INNY(0, "Inny...", 0, 0);
 	
 	private double ro;

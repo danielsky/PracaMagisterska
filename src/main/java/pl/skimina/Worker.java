@@ -7,7 +7,7 @@ public class Worker implements Runnable {
 	
 	
 	private double czas;
-	private double wsp_Beta = 0.1;
+	private double wsp_Beta = 0.4;
 	
 
 	private double sumaCzasu = 0.0;
@@ -46,8 +46,8 @@ public class Worker implements Runnable {
 	
 	public void run() {
 		
-		error = 200;
-		int l = 0;
+		//error = 200;
+		int licznik = 0;
 		//double error = 0.0;
 		do{
 			
@@ -81,23 +81,29 @@ public class Worker implements Runnable {
 			}
 			
 			
-			
+			error = 0;
 			//zaktualizowanie temperatur w sekcjach
 			for(Sekcja s : sekcje){
 				s.T_t += s.dT_t*wsp_Beta;
 				s.T_p += s.dT_p*wsp_Beta;
 				s.T_s += s.dT_s*wsp_Beta;
 				s.T_z += s.dT_z*wsp_Beta;
+				
+				error += (s.dT_t + s.dT_p + s.dT_s + s.dT_z)*wsp_Beta;
+				
 			}
 			
 			
-			l++;
+			licznik++;
 			sumaCzasu += czas;
-			error = error-1;
+			//error = error-1;
+			if(licznik > 1000000) break;
 		}while(error>0);
-		System.out.println("Ilość przebiegów pętli:" +l);		
-		System.out.println("Suma czasu:" +sumaCzasu);
 		
+		System.out.println("==========================");
+		System.out.println("Ilość przebiegów pętli:" +licznik);		
+		System.out.println("Suma czasu:" +sumaCzasu);
+		System.out.println("==========================");
 		
 		finished = true;
 	}
