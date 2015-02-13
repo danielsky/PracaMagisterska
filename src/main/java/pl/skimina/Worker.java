@@ -7,7 +7,7 @@ public class Worker implements Runnable {
 	
 	
 	private double czas;
-	private double wsp_Beta = 0.4;
+	private double wsp_Beta = 0.2;
 	
 
 	private double sumaCzasu = 0.0;
@@ -98,7 +98,7 @@ public class Worker implements Runnable {
 			sumaCzasu += czas;
 			//error = error-1;
 			if(licznik > 1000000) break;
-		}while(error>0);
+		}while(Math.abs(error)>0.00001);
 		
 		System.out.println("==========================");
 		System.out.println("Ilość przebiegów pętli:" +licznik);		

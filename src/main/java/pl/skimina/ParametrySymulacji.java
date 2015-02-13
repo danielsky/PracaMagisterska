@@ -197,9 +197,9 @@ public class ParametrySymulacji {
 		
 		
 		//do wyliczenia
-		alfa_t = 500000;
-		alfa_s = 500000;
-		alfa_3 = 500000;
+		alfa_t = 10000;
+		alfa_s = 10000;
+		alfa_3 = 10000;
 	}
 	
 	public Map<String, String> getValues(){

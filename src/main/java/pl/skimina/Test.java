@@ -1,8 +1,7 @@
 package pl.skimina;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -37,13 +36,15 @@ public class Test {
 		ps.d3 = 0.20;
 		ps.d4 = 0.21;
 		
-		ps.v_s = 0.2;
-		ps.v_t = 0.3;
+		ps.v_s = 0.05;
+		ps.v_t = 0.07;
 		
 		ps.dlugosc_wymiennika = 0.7;
-		ps.ilosc_sekcji = 10;
+		ps.ilosc_sekcji = 20;
 		
 		ps.configure();
+		
+		System.out.println("Długość sekcji: "+ps.dlugosc_sekcji);
 		
 		Worker w = new Worker(ps);
 		w.run();
@@ -51,6 +52,18 @@ public class Test {
 		Data data = w.getCurrentData();
 		Gson gson = new Gson();
 		System.out.println(gson.toJson(data));*/
+		
+		
+		
+		ResultVisualizer res = new ResultVisualizer(ps.dlugosc_wymiennika, ps.d4, ps.ilosc_sekcji);
+		res.setDiameters(ps.d1, ps.d2, ps.d3, ps.d4);
+		res.setResults(w.getSekcje());
+		
+		Image image = res.vizualize();
+		
+		
+		
+		/*
 		BufferedImage image =  new BufferedImage(400, 100, BufferedImage.TYPE_INT_ARGB);
 		
 		Graphics g = image.getGraphics();
@@ -97,7 +110,7 @@ public class Test {
 			
 			pos += offset;
 			
-		}
+		}*/
 		
 		System.out.println("T: ");
 		for(Sekcja s : w.getSekcje()){
@@ -116,8 +129,8 @@ public class Test {
 			System.out.println(s.T_z);
 		}
 		
-		g.setColor(Color.BLACK);
-		g.drawRect(10, 10, 380, 80);
+		//g.setColor(Color.BLACK);
+		//g.drawRect(10, 10, 380, 80);
 		
 		//g.drawLine(10, 40, 390, 40);
 		//g.drawLine(10, 60, 390, 60);
