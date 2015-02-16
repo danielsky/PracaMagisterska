@@ -2,7 +2,6 @@ package pl.skimina;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +17,7 @@ public class ResultVisualizer {
 	private int width,height,sections;
 	
 	private double d1,d2,d3,d4;
-	//private double[] t_t, t_p, t_s, t_z;
+
 	private Sekcja[] sekcje;
 	
 	private double min_temp, max_temp;
@@ -36,7 +35,7 @@ public class ResultVisualizer {
 		
 		this.sections = sections;
 		
-		section_size = (double)width/(double)sections;
+		section_size = (double)(width-2*MARGIN)/(double)sections;
 	}
 	
 	public void setDiameters(double d1, double d2, double d3, double d4){
@@ -46,27 +45,11 @@ public class ResultVisualizer {
 		this.d4 = d4;
 	}
 	
-	/*public void setResults(double[] t_t, double[] t_p, double[] t_s, double[] t_z){
-		this.t_t = t_t; 
-		this.t_p = t_p;
-		this.t_s = t_s; 
-		this.t_z = t_z;
-	}*/
 	
 	public void setResults(Sekcja[] sekcje){
 		this.sekcje = sekcje;
 	}
-	
-	/*private void prepareColors(){
-		List<Double> list = new ArrayList<Double>();
-		for(double d : t_t) list.add(d);
-		for(double d : t_p) list.add(d);
-		for(double d : t_s) list.add(d);
-		for(double d : t_z) list.add(d);
-		
-		min_temp = Collections.min(list);
-		max_temp = Collections.max(list);
-	}*/
+
 	
 	private void prepareColors(){
 		List<Double> list = new ArrayList<Double>();
@@ -93,13 +76,8 @@ public class ResultVisualizer {
 	    return Color.getHSBColor((float)H, (float)S, (float)B);
 	}
 	
-	public Image vizualize(){
+	public BufferedImage vizualize(){
 		
-		/*if(sections != t_t.length) throw new RuntimeException("Sizes not match");
-		if(sections != t_p.length) throw new RuntimeException("Sizes not match");
-		if(sections != t_s.length) throw new RuntimeException("Sizes not match");
-		if(sections != t_z.length) throw new RuntimeException("Sizes not match");
-		*/
 		if(sections != sekcje.length) throw new RuntimeException("Sizes not match");
 		
 		prepareColors();
@@ -110,10 +88,10 @@ public class ResultVisualizer {
 		
 		
 		
-		int H1 = (int)(s*d1);
-		int H2 = (int)(s*(d2-d1));
-		int H3 = (int)(s*(d3-d2));
-		int H4 = (int)(s*(d4-d3));
+		int H1 = (int)Math.ceil(s*d1);
+		int H2 = (int)Math.ceil(s*(d2-d1)/2);
+		int H3 = (int)Math.ceil(s*(d3-d2)/2);
+		int H4 = (int)Math.ceil(s*(d4-d3)/2);
 		
 		int Y3 = (int)(s*d3);
 		int Y2 = (int)(s*d2);
@@ -141,29 +119,32 @@ public class ResultVisualizer {
 		
 		for(int i=0;i<sections;i++){
 			
+			int pos = MARGIN + (int)(i*section_size);
+			
 			Sekcja ss = sekcje[i];
 			
 			Color c = getColor(ss.T_t);
 			g.setColor(c);
-			g.fillRect((int)(i*section_size), y4, (int)section_size, H1);
+			g.fillRect(pos, y4, (int)Math.ceil(section_size), H1);
 			
 			c = getColor(ss.T_p);
 			g.setColor(c);
-			g.fillRect((int)(i*section_size), y3, (int)section_size, H2);
-			g.fillRect((int)(i*section_size), y5, (int)section_size, H2);
+			g.fillRect(pos, y3, (int)Math.ceil(section_size), H2);
+			g.fillRect(pos, y5, (int)Math.ceil(section_size), H2);
 			
 			c = getColor(ss.T_s);
 			g.setColor(c);
-			g.fillRect((int)(i*section_size), y2, (int)section_size, H3);
-			g.fillRect((int)(i*section_size), y6, (int)section_size, H3);
+			g.fillRect(pos, y2, (int)Math.ceil(section_size), H3);
+			g.fillRect(pos, y6, (int)Math.ceil(section_size), H3);
 			
 			c = getColor(ss.T_z);
 			g.setColor(c);
-			g.fillRect((int)(i*section_size), MARGIN, (int)section_size, H4);
-			g.fillRect((int)(i*section_size), y7, (int)section_size, H4);
+			g.fillRect(pos, MARGIN, (int)Math.ceil(section_size), H4);
+			g.fillRect(pos, y7, (int)Math.ceil(section_size), H4);
 			
 		}
 		
+		g.setColor(Color.BLACK);		
 		
 		
 		return image;

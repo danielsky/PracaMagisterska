@@ -197,9 +197,20 @@ public class ParametrySymulacji {
 		
 		
 		//do wyliczenia
-		alfa_t = 10000;
-		alfa_s = 10000;
-		alfa_3 = 10000;
+		alfa_t = 30000;
+		alfa_s = 30000;
+		alfa_3 = 30000;
+	}
+	
+	public void configure(double alfa){
+		
+		dlugosc_sekcji = dlugosc_wymiennika / ((double)ilosc_sekcji);
+		
+		
+		//do wyliczenia
+		alfa_t = alfa;
+		alfa_s = alfa;
+		alfa_3 = alfa;
 	}
 	
 	public Map<String, String> getValues(){
